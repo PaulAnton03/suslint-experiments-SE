@@ -1,0 +1,44 @@
+experiment:
+  runs_per_condition: 30      # number of runs for baseline AND treatment per repo
+  branch: experiment                 # branch to dispatch workflows on (must exist in all repos)
+  delay_between_runs: 15      # seconds to wait between triggering runs
+  run_timeout: 900            # seconds before giving up on a single run (15 min)
+
+# Each repo must be a fork under your GitHub account with:
+#   .github/workflows/<baseline_workflow>
+#   .github/workflows/<treatment_workflow>
+# Both workflows must have `on: workflow_dispatch` and EcoCI instrumentation.
+
+repos:
+  - name: congo-SE
+    owner: PaulAnton03
+    baseline_workflow: experiment-baseline.yml
+    treatment_workflow: experiment-treatment.yml
+    description: "Congo"
+
+  - name: rq-SE
+    owner: PaulAnton03
+    baseline_workflow: experiment-baseline.yml
+    treatment_workflow: experiment-treatment.yml
+    description: "rq"
+
+  - name: ArchiSteamFarm-SE
+    owner: PaulAnton03
+    baseline_workflow: experiment-baseline.yml
+    treatment_workflow: experiment-treatment.yml
+    description: "ArchiSteamFarm"
+
+  - name: django-compressor-SE
+    owner: PaulAnton03
+    baseline_workflow: experiment-baseline.yml
+    treatment_workflow: experiment-treatment.yml
+    description: "django-compressor"
+
+
+
+  # Add more repos here as you create forks:
+  # - name: my-other-fork
+  #   owner: PaulAnton03
+  #   baseline_workflow: experiment-baseline.yml
+  #   treatment_workflow: experiment-treatment.yml
+  #   description: "Some other project — <rule being tested>"
